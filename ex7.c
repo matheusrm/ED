@@ -9,7 +9,7 @@ int main () {
 	float parcelas;
 	float resultado = 0;
 	float n;
-
+// finished
 	printf ("         \n             MENU                    \n");
 	printf ("\n");
 	printf ("a) 1+0 + 2+1 + 3+2 + 4+3 \n");
