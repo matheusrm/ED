@@ -63,7 +63,7 @@ int main () {
 				break;
 
 			case ('c'):
-				memset(&resultado, 0, sizeof(float));
+				memset(&resultado, 0, sizeof(float));		
 				printf("Quantas parcelas deseja somar ? \n");
 				scanf ("%f",&n);
 
