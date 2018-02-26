@@ -27,11 +27,18 @@ int main () {
 	printf ("d) FINALIZAR \n");
 	printf ("\n");
 
+	//
+	void flush_in(){ 
+    	int ch;
+    	while( (ch = fgetc(stdin)) != EOF && ch != '\n' ){} 
+ 	}
+
 
 	while (opcao != 'S') {
+		flush_in();
 		printf ("Selecione a opcao desejada, 'S' para sair : \n");
 		scanf ("%c",&opcao);
-
+		
 		switch (opcao) {
 
 			case ('a'):
