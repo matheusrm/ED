@@ -9,7 +9,7 @@ int main () {
 	float parcelas;
 	float resultado = 0;
 	float n;
-// finished
+// finished now
 	printf ("         \n             MENU                    \n");
 	printf ("\n");
 	printf ("a) 1+0 + 2+1 + 3+2 + 4+3 \n");
@@ -74,10 +74,9 @@ int main () {
 				printf("Quantas parcelas deseja somar ? \n");
 				scanf ("%f",&n);
 
-				while (n > 0) {
-
+				for (n ; n > 0 ; n--) {
+					
 					resultado = resultado + n/(n*6);
-					n--;
 				}
 
 				printf("O resultado e : %.2f \n",resultado);
