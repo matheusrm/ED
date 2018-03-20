@@ -1,0 +1,1 @@
+Para compilar caso haja problemas com pow , sqrt = gcc arquivo.c -lm -o arquivo
