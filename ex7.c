@@ -26,11 +26,10 @@ int main () {
 	printf ("\n");
 	printf ("d) FINALIZAR \n");
 	printf ("\n");
-
 	//
-	void flush_in(){ 
+	void flush_in(){
     	int ch;
-    	while( (ch = fgetc(stdin)) != EOF && ch != '\n' ){} 
+    	while( (ch = fgetc(stdin)) != EOF && ch != '\n' ){}
  	}
 
 
@@ -38,15 +37,15 @@ int main () {
 		flush_in();
 		printf ("Selecione a opcao desejada, 'S' para sair : \n");
 		scanf ("%c",&opcao);
-		
+
 		switch (opcao) {
 
 			case ('a'):
-				
+
 				memset(&resultado, 0, sizeof(float));
 				printf ("Quantas parcelas deseja somar ? \n");
 				scanf ("%f",&n);
-				
+
 				while (n > 0) {
 
 					resultado = resultado + ((n+(n-1))/(n*n));
@@ -54,7 +53,7 @@ int main () {
 				}
 				printf ("O resultado e : %.2f \n",resultado);
 				break;
-		
+
 
 			case ('b'):
 				memset(&resultado, 0, sizeof(float));
@@ -70,18 +69,18 @@ int main () {
 				break;
 
 			case ('c'):
-				memset(&resultado, 0, sizeof(float));		
+				memset(&resultado, 0, sizeof(float));
 				printf("Quantas parcelas deseja somar ? \n");
 				scanf ("%f",&n);
 
 				for (n ; n > 0 ; n--) {
-					
+
 					resultado = resultado + n/(n*6);
 				}
 
 				printf("O resultado e : %.2f \n",resultado);
 				break;
-			
+
 		}
 	}
 

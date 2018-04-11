@@ -10,26 +10,8 @@ void tabuada(int numero,int *vet);
 
 int main () {
 	
-	float lado1, lado2, lado3;
-	char *type;
-	int *vet;
-	int numero;
-	vet = (int *) malloc(10 * sizeof(int));
-	type = (char *) malloc(sizeof(char));
-	lado1 = positive();
-	lado2 = positive();
-	lado3 = positive();
-	verificarTriangulo(lado1,lado2,lado3,type);
-	printf("O triangulo é do tipo : %c\n", *type);
-	numero = positive();
-	tabuada(numero,vet);
-	for (int i = 0; i <= 10 ; i++) {
-		printf("Valor %d : %d\n",i,*vet);
-		vet++;
-	}
 
-
-
+	menu();
 
 }
 
@@ -50,9 +32,23 @@ void menu() {
 		printf("Digite uma opcao : \n");
 		scanf("%c",&opcao);
 		if (opcao == 'a' || opcao == 'A') {
-			printf("Exibir resultado da questao 04\n");
+			float lado1, lado2, lado3;
+			char *type;
+			type = (char *) malloc (sizeof(char));
+			lado1 = positive();
+			lado2 = positive();
+			lado3 = positive();
+			verificarTriangulo(lado1,lado2,lado3,type);
+			printf("O triangulo é do tipo : %c\n", *type);
 		}else if(opcao == 'b' || opcao == 'B') {
-			printf("Exibir resultado da questao 06\n");
+			int *vet;
+			vet = (int *) malloc(10 * sizeof(int));
+			int numero = 2;
+			tabuada(3,vet);
+			for (int i = 0; i <= 10 ; i++) {
+				printf("%d x %d : %d\n",numero,i,*vet);
+				vet++;
+			}
 		}else if (opcao == 'c' || opcao == 'C') {
 			printf("Programa finalizado ! \n");
 			break;
