@@ -23,6 +23,7 @@ struct funcionario {
     float salario;
     int qtdDependentes;
     depend dependente;
+    depend *dependen;
 
 
 };
@@ -37,9 +38,10 @@ void quantDependente(int *quantDependentes);
 void salario(float *salario,char *cargo, int *quantDependentes);
 void idadeDependente(int *idade);
 void parentesco(char *parentesco);
-depend* dadosDependentes(depend *dependentes, int quantDependentes);
+depend* dadosDependentes(int quantDependentes);
 func* cadastrar();
 void listarFunc(func *func, int qtd);
+void listarFuncCargo(func *func, int qtd);
 
 
 
@@ -57,8 +59,9 @@ int main() {
         if(pos == 'a' || pos == 'A') {
             pontFunc = cadastrar(&qtd);
         }else if (pos == 'b' || pos == 'B') {
-            printf("asddas");
             listarFunc(pontFunc,qtd);
+        }else if (pos == 'c' || pos == 'C') {
+            listarFuncCargo(pontFunc,qtd);
         }
     }while(pos != 'd' && pos != 'D');
 
@@ -164,17 +167,21 @@ void parentesco(char *parentesco) {
 
 
 
-depend* dadosDependentes(depend *dependentes, int quantDependentes) {
+depend* dadosDependentes(int quantDependentes) {
 
-        depend *dependente = (depend *) malloc(quantDependentes * sizeof(depend));
+        depend *dependentes = (depend *) malloc(quantDependentes * sizeof(depend));
         int a;
-        for (a = 0 ; a < quantDependentes ; a++) {
-            nome(&dependente[a].nome[50]);
-            codigo(&dependente[a].codigo);
-            idadeDependente(&dependente[a].idade);
-            parentesco(&dependente[a].parentesco);
+        if(quantDependentes > 0) {
+            for (a = 0 ; a < quantDependentes ; a++) {
+                nome(&dependentes[a].nome[50]);
+                codigo(&dependentes[a].codigo);
+                idadeDependente(&dependentes[a].idade);
+                parentesco(&dependentes[a].parentesco);
+            }
+        }else {
+            printf("\nQuantidade de dependentes abaixo ou igual a 0\n");
         }
-        return dependente;
+        return dependentes;
     
 }
 
@@ -184,32 +191,76 @@ func* cadastrar(int *qtd) {
     scanf("%d",qtd);
     func *funcionarios = (func *) malloc (*qtd * sizeof(func));
     int b;
-    for (b = 0 ; b < *qtd ; b++) {
-        
-        nome(&funcionarios[b].nome[50]);
-        codigo(&funcionarios[b].codigo);
-        idadeFuncionario(&funcionarios[b].idade);
-        cargoFuncionario(&funcionarios[b].cargo);
-        quantDependente(&funcionarios[b].qtdDependentes);
-        salario(&funcionarios[b].salario, &funcionarios[b].cargo, &funcionarios[b].qtdDependentes);
-        dadosDependentes(&funcionarios[b].dependente, funcionarios[b].qtdDependentes);
+    if (*qtd > 0) {
+        for (b = 0 ; b < *qtd ; b++) {
+            
+            nome(&funcionarios[b].nome[50]);
+            codigo(&funcionarios[b].codigo);
+            idadeFuncionario(&funcionarios[b].idade);
+            cargoFuncionario(&funcionarios[b].cargo);
+            quantDependente(&funcionarios[b].qtdDependentes);
+            salario(&funcionarios[b].salario, &funcionarios[b].cargo, &funcionarios[b].qtdDependentes);
+            funcionarios[b].dependen = dadosDependentes (funcionarios[b].qtdDependentes);
 
+        }
+
+    }else {
+        printf("\nQuantidade de funcionarios abaixo ou igual a 0\n");
     }
     return funcionarios;
 }
 
 void listarFunc(func *func, int qtd) {
 
-    int a;
+    int a,b;
+    if(qtd > 0) {
 
-    for (a = 0 ; a < qtd ; a++) {
+        for (a = 0 ; a < qtd ; a++) {
 
-        printf("\nNome: %s\n",func[a].nome);
-        printf("Codigo: %d\n",func[a].codigo);
-        printf("Idade: %d\n", func[a].idade);
-        printf("Cargo: %c\n", func[a].cargo);
-        printf("Quantidade Dependentes: %d\n", func[a].qtdDependentes);
-        printf("Salario: %f\n", func[a].salario);
-        printf("Dados do dependente: \n");
+            printf("\nNome: %s\n",func[a].nome);
+            printf("Codigo: %d\n",func[a].codigo);
+            printf("Idade: %d\n", func[a].idade);
+            printf("Cargo: %c\n", func[a].cargo);
+            printf("Quantidade Dependentes: %d\n", func[a].qtdDependentes);
+            printf("Salario: %f\n", func[a].salario);
+            printf("Dados do dependente do funcionário %s: \n", func[a].nome);
+            for(b = 0; b < func[a].qtdDependentes ; b++) {
+                printf("\nNome dependente : %s\n", func[a].dependen[b].nome);
+                printf("Codigo dependente : %d\n", func[a].dependen[b].codigo);
+                printf("Idade do dependente : %d\n",func[a].dependen[b].idade);
+                printf("Parentesco do dependente : %c\n",func[a].dependen[b].parentesco);
+            }
+        }
+    }else {
+        printf("\nQuantidade de funcionarios abaixo ou igual a 0\n");
     }
 }
+
+    void listarFuncCargo(func *func, int qtd) {
+
+        char cargo;
+        printf("\nDigite o cargo do funcionario:");
+        fflush(stdin);
+        scanf("%c",&cargo);
+        scanf("%c",&cargo);
+        if (cargo != 'E' && cargo != 'J' && cargo != 'P' && cargo != 'S' && cargo != 'G') {
+            printf("\nCargo invalido ! \n");
+        }else {
+            int a,sentinel = 0;
+            if (qtd > 0) {
+                printf("\nDados dos funcionarios com cargo [%c]", cargo);
+                for (a = 0; a < qtd ; a++) {
+                    if(func[a].cargo == cargo) {
+                        sentinel = 1;
+                        printf("\nNome: %s\n",func[a].nome);
+                        printf("Codigo: %d\n",func[a].codigo);
+                        printf("Idade: %d\n",func[a].idade);
+
+                    }
+                }
+            }
+                if(sentinel == 0) {
+                    printf("\nNenhum funcionario encontrado ! ");
+                }
+            }
+        }
