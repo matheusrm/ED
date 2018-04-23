@@ -224,7 +224,7 @@ void listarFunc(func *func, int qtd) {
 
         for (a = 0 ; a < qtd ; a++) {
 
-            printf("\nNome: %s\n",func[a].nome);
+            printf("\nNome do funcionario: %s\n",func[a].nome);
             printf("Codigo: %d\n",func[a].codigo);
             printf("Idade: %d\n", func[a].idade);
             printf("Cargo: %c\n", func[a].cargo);
