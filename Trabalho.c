@@ -31,7 +31,8 @@ struct funcionario {
 typedef struct funcionario func;
 
 void menu();
-void nome(char *nome);
+void nomeFun(char *nome);
+void nomeDep(char *nome);
 void idadeFuncionario(int *idade);
 void cargoFuncionario(char *cargo);
 void quantDependente(int *quantDependentes);
@@ -78,8 +79,13 @@ void menu() {
     printf("\n");
 }
 
-void nome(char *nome) {
-    printf("\nDigite o nome\n");
+void nomeFun(char *nome) {
+    printf("\nDigite o nome do funcionario:\n");
+    scanf("%s",nome);
+}
+
+void nomeDep(char *nome) {
+    printf("\nDigite o nome do dependente:\n");
     scanf("%s",nome);
 }
 
@@ -174,7 +180,7 @@ depend* dadosDependentes(int quantDependentes) {
         int a;
         if(quantDependentes > 0) {
             for (a = 0 ; a < quantDependentes ; a++) {
-                nome(&dependentes[a].nome);
+                nomeDep(&dependentes[a].nome);
                 codigo(&dependentes[a].codigo);
                 idadeDependente(&dependentes[a].idade);
                 parentesco(&dependentes[a].parentesco);
@@ -195,7 +201,7 @@ func* cadastrar(int *qtd) {
     if (*qtd > 0) {
         for (b = 0 ; b < *qtd ; b++) {
             
-            nome(&funcionarios[b].nome);
+            nomeFun(&funcionarios[b].nome);
             codigo(&funcionarios[b].codigo);
             idadeFuncionario(&funcionarios[b].idade);
             cargoFuncionario(&funcionarios[b].cargo);
@@ -243,7 +249,6 @@ void listarFunc(func *func, int qtd) {
         printf("\nDigite o cargo do funcionario:");
         fflush(stdin);
         scanf("%c",&cargo);
-        scanf("%c",&cargo);
         if (cargo != 'E' && cargo != 'J' && cargo != 'P' && cargo != 'S' && cargo != 'G') {
             printf("\nCargo invalido ! \n");
         }else {
@@ -261,7 +266,7 @@ void listarFunc(func *func, int qtd) {
                 }
             }
                 if(sentinel == 0) {
-                    printf("\nNenhum funcionario encontrado ! ");
+                    printf("\nNenhum funcionario encontrado ! \n");
                 }
             }
         }
