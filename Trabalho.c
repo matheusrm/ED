@@ -48,6 +48,7 @@ void listarFuncCargo(func *func, int qtd);
 
 int main() {
 
+    setbuf(stdout, NULL);
     char pos;
     int qtd;
     func *pontFunc = NULL;
@@ -173,7 +174,7 @@ depend* dadosDependentes(int quantDependentes) {
         int a;
         if(quantDependentes > 0) {
             for (a = 0 ; a < quantDependentes ; a++) {
-                nome(&dependentes[a].nome[50]);
+                nome(&dependentes[a].nome);
                 codigo(&dependentes[a].codigo);
                 idadeDependente(&dependentes[a].idade);
                 parentesco(&dependentes[a].parentesco);
@@ -194,7 +195,7 @@ func* cadastrar(int *qtd) {
     if (*qtd > 0) {
         for (b = 0 ; b < *qtd ; b++) {
             
-            nome(&funcionarios[b].nome[50]);
+            nome(&funcionarios[b].nome);
             codigo(&funcionarios[b].codigo);
             idadeFuncionario(&funcionarios[b].idade);
             cargoFuncionario(&funcionarios[b].cargo);
