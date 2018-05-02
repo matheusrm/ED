@@ -1,28 +1,27 @@
 /*
  * biblioteca.h
  *
- *  Created on: 25 de abr de 2018
+ *  Created on: 2 de mai de 2018
  *      Author: n226908114
  */
 
-#ifndef SRC_BIBLIOTECA_H_
-#define SRC_BIBLIOTECA_H_
+#ifndef BIBLIOTECA_H_
+#define BIBLIOTECA_H_
 
-float somar(float, float);
-float subtrair(float, float);
-float multiplicar(float, float);
-float dividir(float, float);
-void getNum(float *a, float *b);
+#define C 5
+#define mult(a,b) (a*b)
 
-struct funcoes {
-	float (*somar)(float,float);
-	float (*subtrair)(float,float);
-	float (*multiplicar)(float,float);
-	float (*dividir)(float,float);
-	float numero;
+struct f {
+	char nome[50];
+	float salario;
+	char convenio;
 };
+typedef struct f f;
+f* criaVetor();
+void getNome(char *c);
+void getSalario(float *f);
+void getConvenio(char *c);
+f* preencheFunc(f *f);
+void imprimeFunc(f *f);
 
-typedef struct funcoes fun;
-
-
-#endif /* SRC_BIBLIOTECA_H_ */
+#endif /* BIBLIOTECA_H_ */
