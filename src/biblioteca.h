@@ -19,8 +19,9 @@ struct f {
 typedef struct f f;
 f* criaVetor();
 void getNome(char *c);
-void getSalario(float *f);
-void getConvenio(char *c);
+void getSalario(float *fa, char* cu);
+double calculaNovoSalario(double salario);
+void getConvenio(char *c, char* cu);
 f* preencheFunc(f *f);
 void imprimeFunc(f *f);
 
