@@ -6,11 +6,21 @@ void ex(int a);
 int f(int a,int b,int res);
 void tabuada(int x, int y);
 void serie(int param, double *res);
+float serieCauda(int param, float res);
+void vetorCauda(int posicoes, int *vetor);
+int produtoVetorCauda(int posicoes, int *vetorr, int produto);
 
 int main() {
 	setbuf(stdout, NULL);
-	int res = f(3,5,0);
-	printf("%d",res);
+	int vet[3];
+	vetorCauda(3,vet); // o nome do vetor traz o endereco de memoria da primeira posicao
+	int prod = produtoVetorCauda(3,vet,1);
+	int x = 0;
+	while(x < 3) {
+		printf("\n%d",vet[x]);
+		x++;
+	}
+	printf("\n%d",prod);
 	return 0;
 }
 
@@ -47,5 +57,30 @@ void serie(int param,double *res) {
 	}else {
 		*res += (pow(param,3))/pow(10,param-1);
 		serie(param-1,res);
+	}
+}
+float serieCauda(int param, float res) {
+	if(param == 0) {
+		return res;
+	}else {
+		return serieCauda(param-1, (pow(param,3))/pow(10,param-1) + res);
+	}
+}
+
+void vetorCauda(int posicoes, int *vetor) {
+	if(posicoes == 1) {
+		*vetor = rand() % 100;
+	}else {
+		*vetor = rand() % 100;
+		return vetorCauda(posicoes - 1, ++vetor);
+	}
+}
+
+int produtoVetorCauda(int posicoes, int *vetorr, int produto) {
+	if(posicoes == 0) {
+		return produto;
+	}else {
+		return produtoVetorCauda(posicoes-1,vetorr+1,produto * (*vetorr));
+		//vetorr++;
 	}
 }
